@@ -1,0 +1,37 @@
+name: CI/CD
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Secret scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: main
+      - name: Backend npm audit
+        run: cd backend-hybrid && npm audit --audit-level=high
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: cd backend-hybrid && npm ci && npm test
+      - run: cd frontend-complete && npm ci && npm run type-check && npm run lint
+
+  build:
+    needs: [security, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t fluxion-backend ./backend-hybrid
+      - run: docker build -t fluxion-webrtc ./backend-webrtc
+      - run: docker build -t fluxion-redaction ./backend-hybrid/redaction-service

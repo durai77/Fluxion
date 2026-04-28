@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    --primary: 0 0% 18%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 18%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 95%;
+    --accent-foreground: 0 0% 18%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 45%;
+    --radius: 1rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 0 0% 18%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 18%;
+    --sidebar-border: 0 0% 89%;
+    --sidebar-ring: 0 0% 45%;
+
+    /* Semantic tokens for dashboard */
+    --dash-bg: #F3F4F6;
+    --dash-panel: #ffffff;
+    --dash-panel-border: #E5E7EB;
+    --dash-inset: #F9FAFB;
+    --dash-inset-border: #E5E7EB;
+    --dash-text-primary: #111827;
+    --dash-text-secondary: #374151;
+    --dash-text-muted: #6B7280;
+    --dash-text-subtle: #9CA3AF;
+    --dash-accent: #1F2937;
+    --dash-accent-hover: #111827;
+    --dash-row-hover: #F9FAFB;
+    --dash-row-selected: #F3F4F6;
+    --dash-separator: #F3F4F6;
+    --dash-field-bg: #ffffff;
+    --dash-field-border: #D1D5DB;
+    --dash-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    --dash-highlight-bg: #1F2937;
+    --dash-highlight-text: #E5E7EB;
+    --dash-highlight-muted: #9CA3AF;
+  }
+
+  .dark {
+    --background: 0 0% 9%;
+    --foreground: 0 0% 92%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 92%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 92%;
+    --primary: 0 0% 92%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 92%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 92%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 55%;
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 92%;
+    --sidebar-primary: 0 0% 92%;
+    --sidebar-primary-foreground: 0 0% 9%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 0 0% 92%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 0 0% 55%;
+
+    --dash-bg: #0F1012;
+    --dash-panel: #1A1B20;
+    --dash-panel-border: #2E3038;
+    --dash-inset: #212229;
+    --dash-inset-border: #2E3038;
+    --dash-text-primary: #F3F4F6;
+    --dash-text-secondary: #D1D5DB;
+    --dash-text-muted: #A1A7B4;
+    --dash-text-subtle: #6B7280;
+    --dash-accent: #D4D4D8;
+    --dash-accent-hover: #F3F4F6;
+    --dash-row-hover: #22232B;
+    --dash-row-selected: #282A33;
+    --dash-separator: #232530;
+    --dash-field-bg: #212229;
+    --dash-field-border: #3A3C46;
+    --dash-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 6px 16px rgba(0,0,0,0.2);
+    --dash-highlight-bg: #252730;
+    --dash-highlight-text: #E5E7EB;
+    --dash-highlight-muted: #9CA3AF;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", "Manrope", "Aptos", "Segoe UI", sans-serif;
+    background: var(--dash-bg);
+    min-height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Inter", "Sora", "Aptos Display", "Segoe UI", sans-serif;
+  }
+
+  ::selection {
+    background: rgba(128, 128, 128, 0.2);
+    color: var(--dash-text-primary);
+  }
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-[28px] border;
+    border-color: var(--dash-panel-border);
+    background-color: var(--dash-panel);
+    box-shadow: var(--dash-shadow);
+  }
+
+  .surface-card-strong {
+    @apply rounded-[32px] border;
+    border-color: var(--dash-panel-border);
+    background-color: var(--dash-panel);
+    box-shadow: var(--dash-shadow);
+  }
+
+  .panel-soft {
+    @apply rounded-[24px] border;
+    border-color: var(--dash-panel-border);
+    background-color: var(--dash-inset);
+  }
+
+  .panel-dark {
+    @apply rounded-[28px] border text-foreground;
+    border-color: var(--dash-panel-border);
+    background: var(--dash-panel);
+    box-shadow: var(--dash-shadow);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Inter", "Sora", "Aptos Display", "Segoe UI", sans-serif;
+  }
+
+  .font-mono-brand {
+    font-family: "IBM Plex Mono", "Cascadia Code", "Consolas", monospace;
+  }
+
+  .app-shell-bg {
+    background: var(--dash-bg);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .shadow-soft {
+    box-shadow: var(--dash-shadow);
+  }
+
+  .scrollbar-modern {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(128, 128, 128, 0.25) transparent;
+  }
+
+  .scrollbar-modern::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .scrollbar-modern::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-modern::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: rgba(128, 128, 128, 0.2);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .mesh-highlight {
+    background: linear-gradient(135deg, rgba(128, 128, 128, 0.02), transparent 44%),
+                linear-gradient(315deg, rgba(128, 128, 128, 0.03), transparent 36%),
+                linear-gradient(180deg, var(--dash-panel), var(--dash-inset));
+  }
+}

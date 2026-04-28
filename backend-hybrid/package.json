@@ -1,0 +1,37 @@
+{
+  "name": "zero-trust-backend",
+  "version": "1.0.0",
+  "description": "Zero-Trust Encrypted File Sharing Backend",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "node --check src/index.js && node --check src/controllers/authController.js && node --check src/controllers/filesController.js && node --check src/controllers/usersController.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1037.0",
+    "@aws-sdk/s3-request-presigner": "^3.1037.0",
+    "@supabase/supabase-js": "^2.104.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "google-auth-library": "^9.4.1",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.10.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "multer": "^2.0.1",
+    "nanoid": "^3.3.11",
+    "pino": "^10.3.1",
+    "pino-http": "^11.0.0",
+    "pompelmi": "^1.0.0",
+    "rate-limit-redis": "^4.3.1",
+    "resend": "^6.12.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

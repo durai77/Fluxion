@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend-hybrid
+    ports:
+      - "3000:3000"
+    env_file: ./backend-hybrid/.env
+    depends_on:
+      - mongo
+      - redis
+
+  webrtc:
+    build: ./backend-webrtc
+    ports:
+      - "9000:9000"
+    env_file: ./backend-webrtc/.env
+    depends_on:
+      - backend
+
+  redaction:
+    build: ./backend-hybrid/redaction-service
+    ports:
+      - "5000:5000"
+    environment:
+      FRONTEND_URL: http://localhost:5173
+
+  frontend:
+    build: ./frontend-complete
+    ports:
+      - "5173:5173"
+    env_file: ./frontend-complete/.env
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo_data:
